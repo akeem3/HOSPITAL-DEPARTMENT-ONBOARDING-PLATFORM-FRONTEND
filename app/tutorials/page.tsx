@@ -114,8 +114,7 @@ export default function TutorialsPage() {
                 title: tutorial.title,
                 description: tutorial.description,
                 duration: tutorial.duration,
-                image:
-                  tutorial.thumbnail || "/placeholder.svg?height=200&width=300", // Map thumbnail to image
+                image: tutorial.thumbnail,
                 status: tutorial.status,
               }}
             />

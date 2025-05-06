@@ -34,6 +34,7 @@ import {
   MoreHorizontal,
   PlusCircle,
   Trash2,
+  Layers,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
@@ -59,10 +60,18 @@ export default function TutorialsPage() {
   // Paginate tutorials
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentTutorials = filteredTutorials.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentTutorials = filteredTutorials
+    .slice(indexOfFirstItem, indexOfLastItem)
+    .map((tutorial) => {
+      return {
+        ...tutorial,
+        chaptersCount: tutorial.chapters.length,
+        contentItemsCount: tutorial.chapters.reduce(
+          (total, chapter) => total + chapter.contentItems.length,
+          0
+        ),
+      };
+    });
   const totalPages = Math.ceil(filteredTutorials.length / itemsPerPage);
 
   return (
@@ -108,6 +117,9 @@ export default function TutorialsPage() {
                 Status
               </TableHead>
               <TableHead className="text-gray-900 font-medium">
+                Chapters
+              </TableHead>
+              <TableHead className="text-gray-900 font-medium">
                 Last Updated
               </TableHead>
               <TableHead className="text-gray-900 font-medium">
@@ -122,7 +134,7 @@ export default function TutorialsPage() {
             {currentTutorials.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={5}
+                  colSpan={6}
                   className="text-center py-8 text-gray-700"
                 >
                   No tutorials found. Try adjusting your search or filter.
@@ -158,10 +170,21 @@ export default function TutorialsPage() {
                     </Badge>
                   </TableCell>
                   <TableCell className="text-gray-900">
-                    {tutorial.lastUpdated || "N/A"}
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-1">
+                        <Layers className="h-4 w-4 text-gray-500" />
+                        <span>{tutorial.chaptersCount}</span>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {tutorial.contentItemsCount} content items
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="text-gray-900">
-                    {tutorial.author || "Admin"}
+                    {tutorial.updatedAt}
+                  </TableCell>
+                  <TableCell className="text-gray-900">
+                    {tutorial.author}
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>

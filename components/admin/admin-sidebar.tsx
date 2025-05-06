@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, Home, Users, LogOut, LayoutDashboard } from "lucide-react";
+import {
+  BookOpen,
+  Home,
+  Users,
+  LogOut,
+  LayoutDashboard,
+  PlusCircle,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -46,7 +53,7 @@ export function AdminSidebar() {
                 className="text-gray-900 hover:bg-blue-50 hover:text-blue-700"
               >
                 <Link href="/admin">
-                  <LayoutDashboard className="h-4 w-4 mr-2" />
+                  <LayoutDashboard className="h-4 w-4" />
                   <span>Dashboard</span>
                 </Link>
               </SidebarMenuButton>
@@ -54,12 +61,27 @@ export function AdminSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 asChild
-                isActive={pathname.includes("/admin/tutorials")}
+                isActive={
+                  pathname.includes("/admin/tutorials") &&
+                  !pathname.includes("/create")
+                }
                 className="text-gray-900 hover:bg-blue-50 hover:text-blue-700"
               >
                 <Link href="/admin/tutorials">
-                  <BookOpen className="h-4 w-4 mr-2" />
+                  <BookOpen className="h-4 w-4" />
                   <span>Tutorials</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === "/admin/tutorials/create"}
+                className="text-gray-900 hover:bg-blue-50 hover:text-blue-700"
+              >
+                <Link href="/admin/tutorials/create">
+                  <PlusCircle className="h-4 w-4" />
+                  <span>New Tutorial</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -70,7 +92,7 @@ export function AdminSidebar() {
                 className="text-gray-900 hover:bg-blue-50 hover:text-blue-700"
               >
                 <Link href="/admin/users">
-                  <Users className="h-4 w-4 mr-2" />
+                  <Users className="h-4 w-4" />
                   <span>Admin Users</span>
                 </Link>
               </SidebarMenuButton>
@@ -81,7 +103,7 @@ export function AdminSidebar() {
                 className="text-gray-900 hover:bg-blue-50 hover:text-blue-700"
               >
                 <Link href="/" target="_blank">
-                  <Home className="h-4 w-4 mr-2" />
+                  <Home className="h-4 w-4" />
                   <span>View Website</span>
                 </Link>
               </SidebarMenuButton>
@@ -95,7 +117,7 @@ export function AdminSidebar() {
                 onClick={handleLogout}
                 className="text-gray-900 hover:bg-red-50 hover:text-red-700"
               >
-                <LogOut className="h-4 w-4 mr-2" />
+                <LogOut className="h-4 w-4" />
                 <span>Logout</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
