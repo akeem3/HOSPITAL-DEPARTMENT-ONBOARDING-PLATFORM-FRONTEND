@@ -9,12 +9,12 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const SIDEBAR_COOKIE_NAME = "sidebar:state";
-const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
-const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_MOBILE = "18rem";
-const SIDEBAR_WIDTH_ICON = "3rem";
-const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+// const SIDEBAR_COOKIE_NAME = "sidebar:state";
+// const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
+// const SIDEBAR_WIDTH = "16rem";
+// const SIDEBAR_WIDTH_MOBILE = "18rem";
+// const SIDEBAR_WIDTH_ICON = "3rem";
+// const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
 interface SidebarContextValue {
   expanded: boolean;
@@ -125,7 +125,7 @@ export function SidebarMenuButton({
   className,
   children,
   isActive,
-  asChild,
+  //asChild,
   ...props
 }: {
   className?: string;
@@ -133,9 +133,9 @@ export function SidebarMenuButton({
   isActive?: boolean;
   asChild?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const Comp = asChild ? React.Fragment : "button";
   return (
-    <Comp
+    <Button
+      variant="ghost"
       className={cn(
         "flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
         isActive && "bg-blue-50 text-blue-700",
@@ -144,7 +144,7 @@ export function SidebarMenuButton({
       {...props}
     >
       {children}
-    </Comp>
+    </Button>
   );
 }
 

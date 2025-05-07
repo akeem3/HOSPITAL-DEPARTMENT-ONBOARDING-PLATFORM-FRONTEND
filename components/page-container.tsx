@@ -15,8 +15,8 @@ export function PageContainer({
 }: PageContainerProps) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-40 border-b bg-background shadow-sm">
-        <div className="container-custom flex h-16 items-center">
+      <header className="sticky top-0 z-40 bg-background shadow-sm">
+        <div className="container-custom flex h-16 items-center bg-white">
           <MainNav />
         </div>
       </header>

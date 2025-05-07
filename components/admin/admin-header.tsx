@@ -22,9 +22,9 @@ export function AdminHeader() {
           <Button
             variant="outline"
             size="icon"
-            className="mr-2 border-gray-300"
+            className="mr-2 border-gray-300 text-gray-900"
           >
-            <Menu className="h-5 w-5 text-gray-900" />
+            <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>

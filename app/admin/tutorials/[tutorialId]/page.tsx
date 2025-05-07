@@ -686,6 +686,7 @@ export default function EditTutorialPage({
               ) : (
                 <TutorialPreview
                   tutorial={{
+                    id: tutorialId,
                     title: title || "Tutorial Title",
                     description:
                       description || "Tutorial description will appear here.",

@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         <Link href="/admin/tutorials/create">
           <Button
             size="default"
-            className="whitespace-nowrap bg-blue-700 hover:bg-blue-800 text-white swedish-button admin-button-primary"
+            className="whitespace-nowrap bg-blue-700 hover:bg-blue-800 text-white font-medium rounded-full"
           >
             <PlusCircle className="mr-2 h-4 w-4" />
             New Tutorial
@@ -40,7 +40,7 @@ export default function AdminDashboard() {
       <AdminStats />
 
       <div className="grid gap-6 md:grid-cols-2">
-        <Card className="admin-card border-t-4 border-t-blue-700">
+        <Card className="border-t-4 border-t-blue-700 bg-white border border-gray-300 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gray-50 border-b border-gray-200">
             <div>
               <CardTitle className="text-xl font-semibold text-blue-700">
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
           </CardContent>
         </Card>
 
-        <Card className="admin-card border-t-4 border-t-green-600">
+        <Card className="border-t-4 border-t-green-600 bg-white border border-gray-300 shadow-sm">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gray-50 border-b border-gray-200">
             <div>
               <CardTitle className="text-xl font-semibold text-blue-700">
@@ -192,13 +192,13 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                   <p className="mt-2 text-sm text-gray-900">
-                    &#34;This tutorial was{" "}
+                    "This tutorial was{" "}
                     {id === 1
                       ? "excellent"
                       : id === 2
                       ? "very helpful"
                       : "informative"}
-                    .&#34;
+                    ."
                   </p>
                   <p className="mt-1 text-xs text-gray-700">
                     {id} day{id > 1 ? "s" : ""} ago
@@ -211,7 +211,7 @@ export default function AdminDashboard() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-3">
-        <Card className="admin-card border-t-4 border-t-purple-600">
+        <Card className="border-t-4 border-t-purple-600 bg-white border border-gray-300 shadow-sm">
           <CardHeader className="bg-gray-50 border-b border-gray-200">
             <CardTitle className="text-blue-700">Quick Actions</CardTitle>
           </CardHeader>

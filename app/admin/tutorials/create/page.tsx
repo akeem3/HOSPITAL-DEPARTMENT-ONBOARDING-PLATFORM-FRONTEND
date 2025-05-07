@@ -525,7 +525,7 @@ export default function CreateTutorialPage() {
                         Add Chapter
                       </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="bg-white">
                       <DialogHeader>
                         <DialogTitle>Add New Chapter</DialogTitle>
                         <DialogDescription>
@@ -792,6 +792,7 @@ export default function CreateTutorialPage() {
               ) : (
                 <TutorialPreview
                   tutorial={{
+                    id: "preview",
                     title: form.getValues().title || "Tutorial Title",
                     description:
                       form.getValues().description ||
