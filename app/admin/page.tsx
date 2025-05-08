@@ -192,13 +192,13 @@ export default function AdminDashboard() {
                     </div>
                   </div>
                   <p className="mt-2 text-sm text-gray-900">
-                    "This tutorial was{" "}
+                    &#34;This tutorial was{" "}
                     {id === 1
                       ? "excellent"
                       : id === 2
                       ? "very helpful"
                       : "informative"}
-                    ."
+                    .&#34;
                   </p>
                   <p className="mt-1 text-xs text-gray-700">
                     {id} day{id > 1 ? "s" : ""} ago
