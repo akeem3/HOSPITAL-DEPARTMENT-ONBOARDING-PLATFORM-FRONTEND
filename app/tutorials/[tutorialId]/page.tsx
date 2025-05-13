@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   getTutorialById,
@@ -20,16 +20,16 @@ import type { ContentItem } from "@/lib/types";
 import { Progress } from "@/components/ui/progress";
 
 export default function TutorialPage({
-  params,
+  params: asyncParams,
 }: {
-  params: { tutorialId: string };
+  params: Promise<{ tutorialId: string }>;
 }) {
+  const { tutorialId } = use(asyncParams); // ✅ Correctly unwraps the params
   const router = useRouter();
   const searchParams = useSearchParams();
-  const tutorialId = params.tutorialId;
+
   const tutorial = getTutorialById(tutorialId);
 
-  // Get chapter and content item IDs from URL or default to first ones
   const initialChapterId =
     searchParams.get("chapter") || tutorial?.chapters[0]?.id || "";
   const initialContentItemId =
@@ -44,13 +44,12 @@ export default function TutorialPage({
   const [completedItems, setCompletedItems] = useState<string[]>([]);
   const [progress, setProgress] = useState(0);
 
-  // Mock user ID - in a real app, this would come from authentication
+  // This will be dynamic later
   const userId = "user1";
 
   useEffect(() => {
     if (!tutorial) return;
 
-    // Find the active content item
     const chapter = tutorial.chapters.find((c) => c.id === activeChapterId);
     const contentItem = chapter?.contentItems.find(
       (i) => i.id === activeContentItemId
@@ -59,7 +58,6 @@ export default function TutorialPage({
     if (contentItem) {
       setActiveContent(contentItem);
     } else if (tutorial.chapters.length > 0) {
-      // Default to first content item of first chapter if not found
       const firstChapter = tutorial.chapters[0];
       if (firstChapter.contentItems.length > 0) {
         const firstContent = firstChapter.contentItems[0];
@@ -67,7 +65,6 @@ export default function TutorialPage({
         setActiveContentItemId(firstContent.id);
         setActiveContent(firstContent);
 
-        // Update URL without full page reload
         router.replace(
           `/tutorials/${tutorialId}?chapter=${firstChapter.id}&content=${firstContent.id}`,
           {
@@ -77,7 +74,6 @@ export default function TutorialPage({
       }
     }
 
-    // Load user progress
     const userProgress = getUserProgressForTutorial(userId, tutorialId);
     const completed = userProgress
       .filter((p) => p.completed)
@@ -85,7 +81,6 @@ export default function TutorialPage({
 
     setCompletedItems(completed);
 
-    // Calculate overall progress
     let totalItems = 0;
     tutorial.chapters.forEach((chapter) => {
       totalItems += chapter.contentItems.length;
@@ -103,8 +98,6 @@ export default function TutorialPage({
   ) => {
     setActiveChapterId(chapterId);
     setActiveContentItemId(contentItemId);
-
-    // Update URL without full page reload
     router.replace(
       `/tutorials/${tutorialId}?chapter=${chapterId}&content=${contentItemId}`,
       { scroll: false }
@@ -137,7 +130,6 @@ export default function TutorialPage({
     if (!completedItems.includes(activeContentItemId)) {
       setCompletedItems([...completedItems, activeContentItemId]);
 
-      // Recalculate progress
       if (tutorial) {
         let totalItems = 0;
         tutorial.chapters.forEach((chapter) => {
