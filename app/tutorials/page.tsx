@@ -115,7 +115,6 @@ export default function TutorialsPage() {
                 description: tutorial.description,
                 duration: tutorial.duration,
                 image: tutorial.thumbnail,
-                status: tutorial.status,
               }}
             />
           ))}

@@ -6,9 +6,7 @@ import {
   getTutorialById,
   getNextContentItem,
   getPreviousContentItem,
-  getUserProgressForTutorial,
 } from "@/lib/data";
-import { FeedbackForm } from "@/components/feedback-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen } from "lucide-react";
@@ -17,14 +15,13 @@ import { PageContainer } from "@/components/page-container";
 import { ChapterAccordion } from "@/components/chapter-accordion";
 import { ContentViewer } from "@/components/content-viewer";
 import type { ContentItem } from "@/lib/types";
-import { Progress } from "@/components/ui/progress";
 
 export default function TutorialPage({
   params: asyncParams,
 }: {
   params: Promise<{ tutorialId: string }>;
 }) {
-  const { tutorialId } = use(asyncParams); // ✅ Correctly unwraps the params
+  const { tutorialId } = use(asyncParams);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -41,11 +38,6 @@ export default function TutorialPage({
   const [activeContentItemId, setActiveContentItemId] =
     useState(initialContentItemId);
   const [activeContent, setActiveContent] = useState<ContentItem | null>(null);
-  const [completedItems, setCompletedItems] = useState<string[]>([]);
-  const [progress, setProgress] = useState(0);
-
-  // This will be dynamic later
-  const userId = "user1";
 
   useEffect(() => {
     if (!tutorial) return;
@@ -73,23 +65,6 @@ export default function TutorialPage({
         );
       }
     }
-
-    const userProgress = getUserProgressForTutorial(userId, tutorialId);
-    const completed = userProgress
-      .filter((p) => p.completed)
-      .map((p) => p.contentItemId);
-
-    setCompletedItems(completed);
-
-    let totalItems = 0;
-    tutorial.chapters.forEach((chapter) => {
-      totalItems += chapter.contentItems.length;
-    });
-
-    const progressPercentage =
-      totalItems > 0 ? Math.round((completed.length / totalItems) * 100) : 0;
-
-    setProgress(progressPercentage);
   }, [tutorial, activeChapterId, activeContentItemId, tutorialId, router]);
 
   const handleSelectContentItem = (
@@ -126,26 +101,6 @@ export default function TutorialPage({
     }
   };
 
-  const handleMarkComplete = () => {
-    if (!completedItems.includes(activeContentItemId)) {
-      setCompletedItems([...completedItems, activeContentItemId]);
-
-      if (tutorial) {
-        let totalItems = 0;
-        tutorial.chapters.forEach((chapter) => {
-          totalItems += chapter.contentItems.length;
-        });
-
-        const newProgress =
-          totalItems > 0
-            ? Math.round(((completedItems.length + 1) / totalItems) * 100)
-            : 0;
-
-        setProgress(newProgress);
-      }
-    }
-  };
-
   if (!tutorial) {
     return (
       <PageContainer>
@@ -172,15 +127,6 @@ export default function TutorialPage({
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">{tutorial.title}</h1>
         <p className="mt-2 text-muted-foreground">{tutorial.description}</p>
-
-        <div className="mt-4 flex items-center gap-4">
-          <div className="flex-1">
-            <Progress value={progress} className="h-2" />
-          </div>
-          <div className="text-sm font-medium text-gray-700">
-            {progress}% Complete
-          </div>
-        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[300px_1fr]">
@@ -197,7 +143,7 @@ export default function TutorialPage({
                 chapters={tutorial.chapters}
                 activeChapterId={activeChapterId}
                 activeContentItemId={activeContentItemId}
-                completedItems={completedItems}
+                completedItems={[]} // Not used anymore
                 onSelectContentItem={handleSelectContentItem}
               />
             </CardContent>
@@ -224,16 +170,9 @@ export default function TutorialPage({
                   activeContentItemId
                 )
               }
-              onComplete={handleMarkComplete}
+              onComplete={() => {}} // No-op since progress is removed
             />
           )}
-
-          <div className="mt-8">
-            <h2 className="mb-4 text-xl font-semibold text-gray-900">
-              Feedback
-            </h2>
-            <FeedbackForm tutorialId={tutorialId} />
-          </div>
         </div>
       </div>
     </PageContainer>

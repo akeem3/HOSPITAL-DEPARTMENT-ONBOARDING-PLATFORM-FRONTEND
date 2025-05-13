@@ -70,7 +70,6 @@ export default function Home() {
                 description: tutorial.description,
                 duration: tutorial.duration,
                 image: tutorial.thumbnail,
-                status: tutorial.status,
               }}
             />
           ))}
