@@ -1,13 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TutorialCard } from "@/components/tutorial-card";
 import Link from "next/link";
 import { getTutorials } from "@/lib/data";
 import { PageContainer } from "@/components/page-container";
 import Image from "next/image";
+import type { Tutorial } from "@/lib/types";
 
 export default function Home() {
-  // Get featured tutorials for the homepage
-  const tutorials = getTutorials().slice(0, 3);
+  const [tutorials, setTutorials] = useState<Tutorial[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getTutorials();
+        setTutorials(data.slice(0, 3)); // Show first 3 as featured
+      } catch (error) {
+        console.error("Failed to load tutorials", error);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <PageContainer>

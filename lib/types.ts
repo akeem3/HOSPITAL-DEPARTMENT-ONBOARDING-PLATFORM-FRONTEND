@@ -26,29 +26,10 @@ export interface Tutorial {
   thumbnail: string;
   chapters: Chapter[];
   category: string;
-  status: "published" | "draft" | "archived";
   createdAt: string;
   updatedAt: string;
   author: string;
   duration: string;
-}
-
-export interface Feedback {
-  id: string;
-  tutorialId: string;
-  userId: string;
-  rating: number;
-  comment: string;
-  createdAt: string;
-}
-
-export interface UserProgress {
-  userId: string;
-  tutorialId: string;
-  chapterId: string;
-  contentItemId: string;
-  completed: boolean;
-  lastAccessed: string;
 }
 
 export interface AdminUser {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { TutorialCard } from "@/components/tutorial-card";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,23 +12,35 @@ import {
 } from "@/components/ui/select";
 import { getTutorials } from "@/lib/data";
 import { PageContainer } from "@/components/page-container";
-import { useState, useEffect } from "react";
+import type { Tutorial } from "@/lib/types";
 
 export default function TutorialsPage() {
-  const allTutorials = getTutorials();
+  const [allTutorials, setAllTutorials] = useState<Tutorial[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("newest");
-  const [filteredTutorials, setFilteredTutorials] = useState(allTutorials);
+  const [filteredTutorials, setFilteredTutorials] = useState<Tutorial[]>([]);
 
   useEffect(() => {
-    // Filter tutorials based on search query
+    async function fetchData() {
+      try {
+        const data = await getTutorials();
+        setAllTutorials(data);
+        setFilteredTutorials(data); // initial display
+      } catch (error) {
+        console.error("Failed to load tutorials", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     let filtered = allTutorials.filter(
       (tutorial) =>
         tutorial.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         tutorial.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    // Sort tutorials based on selected option
     switch (sortBy) {
       case "newest":
         filtered = [...filtered].sort(
@@ -43,15 +56,15 @@ export default function TutorialsPage() {
         break;
       case "duration-asc":
         filtered = [...filtered].sort((a, b) => {
-          const aMinutes = Number.parseInt(a.duration.split(" ")[0]);
-          const bMinutes = Number.parseInt(b.duration.split(" ")[0]);
+          const aMinutes = parseInt(a.duration);
+          const bMinutes = parseInt(b.duration);
           return aMinutes - bMinutes;
         });
         break;
       case "duration-desc":
         filtered = [...filtered].sort((a, b) => {
-          const aMinutes = Number.parseInt(a.duration.split(" ")[0]);
-          const bMinutes = Number.parseInt(b.duration.split(" ")[0]);
+          const aMinutes = parseInt(a.duration);
+          const bMinutes = parseInt(b.duration);
           return bMinutes - aMinutes;
         });
         break;
