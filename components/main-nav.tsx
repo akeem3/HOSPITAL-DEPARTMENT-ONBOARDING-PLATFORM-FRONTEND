@@ -13,9 +13,7 @@ export function MainNav() {
             <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center">
               <span className="text-white font-bold text-sm">MCH</span>
             </div>
-            <div className="font-semibold text-blue-700">
-              Hospital Onboarding
-            </div>
+            <div className="font-semibold text-blue-700">MCH</div>
           </div>
         </Link>
         <nav className="hidden gap-6 md:flex">

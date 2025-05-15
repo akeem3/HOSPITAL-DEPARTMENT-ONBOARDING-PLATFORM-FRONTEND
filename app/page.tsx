@@ -44,16 +44,7 @@ export default function Home() {
                     size="lg"
                     className="w-full sm:w-auto bg-white text-blue-700 hover:bg-blue-50 swedish-button"
                   >
-                    Browse Tutorials
-                  </Button>
-                </Link>
-                <Link href="/tutorials">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto border-white text-white hover:bg-blue-700/20 swedish-button"
-                  >
-                    Continue Learning
+                    Browse Departments
                   </Button>
                 </Link>
               </div>
@@ -74,7 +65,7 @@ export default function Home() {
 
       <section className="py-12">
         <h2 className="mb-6 text-2xl font-bold tracking-tight text-blue-700">
-          Featured Tutorials
+          Departments
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tutorials.map((tutorial) => (
@@ -95,7 +86,7 @@ export default function Home() {
             variant="outline"
             className="swedish-button hover:text-blue-700 hover:border-blue-300"
           >
-            View All Tutorials
+            View All Departments
           </Button>
         </Link>
       </section>

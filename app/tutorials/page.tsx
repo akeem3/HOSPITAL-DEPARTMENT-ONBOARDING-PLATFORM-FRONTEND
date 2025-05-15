@@ -79,7 +79,7 @@ export default function TutorialsPage() {
     <PageContainer>
       <div className="mb-8">
         <h1 className="mb-4 text-3xl font-bold text-blue-600 dark:text-blue-400">
-          All Tutorials
+          All Departments
         </h1>
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
           <div className="flex-1">
