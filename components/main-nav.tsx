@@ -29,7 +29,7 @@ export function MainNav() {
             href="/tutorials"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
-            Tutorials
+            Departments
           </Link>
         </nav>
       </div>
@@ -55,7 +55,7 @@ export function MainNav() {
                 href="/tutorials"
                 className="text-base font-medium transition-colors hover:text-primary"
               >
-                Tutorials
+                Departments
               </Link>
               <Link
                 href="/about"
