@@ -27,7 +27,7 @@ export default function TutorialsPage() {
         setAllTutorials(data);
         setFilteredTutorials(data); // initial display
       } catch (error) {
-        console.error("Failed to load tutorials", error);
+        console.error("Failed to load the tutorials", error);
       }
     }
 
