@@ -79,7 +79,7 @@ export default function TutorialsPage() {
     <PageContainer>
       <div className="mb-8">
         <h1 className="mb-4 text-3xl font-bold text-blue-600 dark:text-blue-400">
-          All Departments
+          ALL DEPARTMENTS
         </h1>
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
           <div className="flex-1">
@@ -90,7 +90,7 @@ export default function TutorialsPage() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <div className="w-full md:w-[200px]">
+          <div className="w-full md:w-[200px] ">
             <Select value={sortBy} onValueChange={setSortBy}>
               <SelectTrigger className="border-blue-200 focus:ring-blue-500">
                 <SelectValue placeholder="Sort by" />

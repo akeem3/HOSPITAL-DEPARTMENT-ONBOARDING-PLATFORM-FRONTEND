@@ -65,7 +65,7 @@ export default function Home() {
 
       <section className="py-12">
         <h2 className="mb-6 text-2xl font-bold tracking-tight text-blue-700">
-          Departments
+          DEPARTMENTS
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tutorials.map((tutorial) => (
