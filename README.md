@@ -2,7 +2,7 @@
 
 An internal knowledge and onboarding system for hospital staff – developed to streamline interdepartmental training and documentation access in a high-turnover clinical environment.
 
-> 📍 Built for a maternity & childbirth hospital in Buraidah, Saudi Arabia  
+> 📍 Built for the **Maternity and Children Hospital, Buraidah**, Saudi Arabia  
 > 🛠️ Tech Stack: **Next.js**, **Tailwind CSS**, **PHP**, **MySQL**, **WampServer**
 
 ---
@@ -16,7 +16,7 @@ The **Hospital Department Onboarding Platform** is a locally hosted, full-stack 
 - Provide consistent departmental resources and video-based training
 - Empower administrators with a dedicated backend to manage content
 
-Built in response to real hospital pain points—where frequent staff turnover and inconsistent training created operational bottlenecks—this platform offers a modern, intuitive interface, accessible only via the hospital’s internal network for enhanced data security.
+Built specifically for the **Maternity and Children Hospital, Buraidah**, this platform addresses critical workflow challenges in training and interdepartmental consistency.
 
 ---
 
@@ -49,7 +49,7 @@ Built in response to real hospital pain points—where frequent staff turnover a
 
 ---
 
-### 🎬 Department Video – Onboarding in Action
+### 🎬 Department Video – Onboarding in Action (Updated UI)
 ![Department Video Page – Improved](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/video%20page%20better.png?alt=media&token=4a93947e-117d-49e2-91ba-fd76cf06b974)
 
 ---
@@ -61,14 +61,15 @@ Built in response to real hospital pain points—where frequent staff turnover a
 
 ## 🧠 Why This Project Matters
 
-This platform demonstrates my ability to deliver complete, practical full-stack solutions for real-world needs, including:
+This project is more than just a portal—it directly solves real pain points inside the **Maternity and Children Hospital, Buraidah**, where the previous system relied on sending scattered files through messaging apps and email.
 
-- Clear, user-focused UI design with **Next.js** and **Tailwind CSS**
-- Backend development with **PHP** and **MySQL**
-- Thoughtful architecture for **secure local hosting** and offline access
-- Admin interface under active development to empower internal teams
+Here’s how the new system makes a difference:
 
-> Open to collaborating on similar web-based solutions in healthcare or education? [Let’s connect.](#)
+1. **Eliminates Chaos:** Replaces unstructured file-sharing with organized, department-specific content.
+2. **Reduces Complaints:** Staff no longer need to raise tickets for missing resources or unclear training steps.
+3. **Speeds Up Onboarding:** New hires can get up to speed quickly with clearly presented videos and documents.
+4. **Empowers Teams:** Admins can upload and manage content without technical help.
+
+> Looking to build practical, impact-driven solutions like this in your team or organization? [Let’s connect.](#)
 
 ---
-
