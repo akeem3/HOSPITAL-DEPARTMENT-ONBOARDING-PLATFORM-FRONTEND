@@ -50,7 +50,7 @@ Built in response to real hospital pain points—where frequent staff turnover a
 ---
 
 ### 🎬 Department Video – Onboarding in Action
-![Department Video Page](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Department%20Video%20Page.png?alt=media&token=5fe0eb44-ef82-4b73-9212-c4e137bff598)
+![Department Video Page – Improved](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/video%20page%20better.png?alt=media&token=4a93947e-117d-49e2-91ba-fd76cf06b974)
 
 ---
 
