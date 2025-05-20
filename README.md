@@ -16,7 +16,7 @@ The **Hospital Department Onboarding Platform** is a locally hosted, full-stack 
 - Provide consistent departmental resources and video-based training
 - Empower administrators with a dedicated backend to manage content
 
-This solution was built in response to internal pain points—where frequent staff turnover and inconsistent training created operational bottlenecks. The result is a modern, intuitive platform accessible only on the hospital’s internal network for enhanced data security and relevance.
+Built in response to real hospital pain points—where frequent staff turnover and inconsistent training created operational bottlenecks—this platform offers a modern, intuitive interface, accessible only via the hospital’s internal network for enhanced data security.
 
 ---
 
@@ -24,8 +24,16 @@ This solution was built in response to internal pain points—where frequent sta
 
 - ✅ Department-wise onboarding content
 - 🎥 Video support for guided training
-- 🗂️ Admin dashboard for media uploads
+- 🗂️ Admin dashboard for media uploads and management
 - 🔐 Locally hosted via **WampServer** for secure, internal access
+
+---
+
+## 🛠️ Development Status
+
+- ✅ **Frontend** complete using **Next.js** and **Tailwind CSS**
+- ✅ **Backend** developed with **PHP** and **MySQL**
+- 🚧 **Admin panel** currently in progress (upload interface & management tools)
 
 ---
 
@@ -46,31 +54,21 @@ This solution was built in response to internal pain points—where frequent sta
 
 ---
 
-### 🛠️ Admin Page – Media & Content Upload Interface
+### 🛠️ Admin Page – Media & Content Upload Interface (In Progress)
 ![Admin Glimpse](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/admin%20glimps.png?alt=media&token=2999abfe-37b1-470d-b40b-c109c4936a32)
 
 ---
 
-## 🚧 Development Notes
+## 🧠 Why This Project Matters
 
-- The **frontend** is fully complete with responsive design using **Tailwind CSS**.
-- The **backend** is actively being developed using **PHP** and **MySQL**, hosted securely via **WampServer** for internal use.
-- Planned enhancements include:
-  - Role-based access control
-  - Upload progress indicators
-  - Department-level analytics
+This platform demonstrates my ability to deliver complete, practical full-stack solutions for real-world needs, including:
 
----
+- Clear, user-focused UI design with **Next.js** and **Tailwind CSS**
+- Backend development with **PHP** and **MySQL**
+- Thoughtful architecture for **secure local hosting** and offline access
+- Admin interface under active development to empower internal teams
 
-## 👩‍💻 Why This Project Matters
-
-This platform highlights my full-stack development abilities—solving real-world problems through custom software. It showcases:
-
-- Practical use of **Next.js** and **Tailwind CSS** for UI development
-- Backend structuring using **PHP/MySQL**
-- Consideration of **data security**, **usability**, and **internal hosting constraints**
-
-> Looking to contribute similar solutions in a professional development team? [Let’s connect.](#)
+> Open to collaborating on similar web-based solutions in healthcare or education? [Let’s connect.](#)
 
 ---
 
