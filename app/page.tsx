@@ -8,6 +8,7 @@ import { getTutorials } from "@/lib/data";
 import { PageContainer } from "@/components/page-container";
 import Image from "next/image";
 import type { Tutorial } from "@/lib/types";
+import Contact from "./contact/page";
 
 export default function Home() {
   const [tutorials, setTutorials] = useState<Tutorial[]>([]);
@@ -29,7 +30,7 @@ export default function Home() {
     <PageContainer>
       <section className="w-full -mx-4 -mt-8 bg-gradient-to-r from-blue-700 to-blue-800 py-12 md:py-24">
         <div className="container-custom px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
               <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl">
                 Welcome to Hospital Staff Onboarding
@@ -49,13 +50,14 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="hidden md:flex justify-end">
-              <div className="relative w-full max-w-md h-[300px] rounded-lg overflow-hidden shadow-xl">
+
+            <div className="hidden md:block">
+              <div className="relative w-full aspect-video max-w-lg mx-auto rounded-2xl shadow-2xl overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/images/mch-hospital.jpg"
                   alt="Healthcare professionals"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 ease-in-out hover:scale-105"
                 />
               </div>
             </div>
@@ -84,7 +86,7 @@ export default function Home() {
         <Link href="/tutorials" className="mx-auto mt-8 block w-fit">
           <Button
             variant="outline"
-            className="swedish-button hover:text-blue-700 hover:border-blue-300"
+            className="swedish-button hover:text-blue-700 hover:border-blue-300 mt-6"
           >
             View All Departments
           </Button>

@@ -1,40 +1,38 @@
-// Define the types for our data model
 export type ContentType = "video" | "document" | "text";
 
 export interface ContentItem {
-  id: string;
+  id?: string | number; // Optional for creation
   title: string;
   type: ContentType;
-  content: string; // URL for video/document, HTML for text
+  content: string;
   description?: string;
-  duration?: string; // For videos
-  order: number;
+  duration?: string;
+  order_num: number;
 }
 
 export interface Chapter {
-  id: string;
+  id?: string | number;
   title: string;
-  description?: string;
+  description?: string; // ← change here
   contentItems: ContentItem[];
-  order: number;
+  order_num: number;
 }
 
 export interface Tutorial {
-  id: string;
+  id: number | string;
   title: string;
   description: string;
   thumbnail: string;
-  chapters: Chapter[];
   category: string;
-  createdAt: string;
-  updatedAt: string;
-  author: string;
   duration: string;
+  createdAt?: string;
+  updatedAt?: string;
+  chapters: Chapter[];
 }
 
 export interface AdminUser {
   id: string;
   username: string;
   email: string;
-  password: string; // In a real app, this would be hashed
+  password: string;
 }

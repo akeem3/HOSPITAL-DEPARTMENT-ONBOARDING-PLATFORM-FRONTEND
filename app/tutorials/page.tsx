@@ -45,13 +45,16 @@ export default function TutorialsPage() {
       case "newest":
         filtered = [...filtered].sort(
           (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            new Date(b.createdAt ?? 0).getTime() -
+            new Date(a.createdAt ?? 0).getTime()
         );
         break;
+
       case "oldest":
         filtered = [...filtered].sort(
           (a, b) =>
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            new Date(a.createdAt ?? 0).getTime() -
+            new Date(b.createdAt ?? 0).getTime()
         );
         break;
       case "duration-asc":
@@ -95,13 +98,29 @@ export default function TutorialsPage() {
               <SelectTrigger className="border-blue-200 focus:ring-blue-500">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="newest">Newest First</SelectItem>
-                <SelectItem value="oldest">Oldest First</SelectItem>
-                <SelectItem value="duration-asc">
+              <SelectContent className="bg-white border border-gray-200 shadow-md rounded-md py-2">
+                <SelectItem
+                  value="newest"
+                  className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
+                >
+                  Newest First
+                </SelectItem>
+                <SelectItem
+                  value="oldest"
+                  className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
+                >
+                  Oldest First
+                </SelectItem>
+                <SelectItem
+                  value="duration-asc"
+                  className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
+                >
                   Duration (Shortest)
                 </SelectItem>
-                <SelectItem value="duration-desc">
+                <SelectItem
+                  value="duration-desc"
+                  className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
+                >
                   Duration (Longest)
                 </SelectItem>
               </SelectContent>

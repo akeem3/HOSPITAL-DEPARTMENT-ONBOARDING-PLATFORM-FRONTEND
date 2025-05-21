@@ -14,19 +14,23 @@ export function PageContainer({
   fullWidth = false,
 }: PageContainerProps) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <header className="sticky top-0 z-40 bg-background shadow-sm">
-        <div className="container-custom flex h-16 items-center bg-white">
+    <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
+      <header className="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-200">
+        <div className="h-16 flex items-center">
           <MainNav />
         </div>
       </header>
+
       <main className="flex-1">
         <div
-          className={`${fullWidth ? "" : "container-custom py-8"} ${className}`}
+          className={`${
+            fullWidth ? "" : "max-w-7xl mx-auto px-4 py-8"
+          } ${className}`}
         >
           {children}
         </div>
       </main>
+
       <SiteFooter />
     </div>
   );

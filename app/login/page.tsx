@@ -24,19 +24,40 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    // Simple mock authentication
-    // In a real app, this would validate against a database
-    if (username === "admin" && password === "password") {
-      // Set a simple session token in localStorage
+    try {
+      const res = await fetch(
+        "http://localhost/mch-api/admin/users/login.php",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Login failed");
+        return;
+      }
+
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", username);
-      router.push("/admin");
-    } else {
-      setError("Invalid username or password");
+      localStorage.setItem("username", data?.username ?? username);
+      router.push("/admin/tutorials");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An unexpected error occurred");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -113,8 +134,9 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white swedish-button"
+                disabled={loading}
               >
-                Sign In
+                {loading ? "Signing In..." : "Sign In"}
               </Button>
             </CardFooter>
           </form>

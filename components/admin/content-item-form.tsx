@@ -1,155 +1,87 @@
+// components/admin/content-item-form.tsx
+
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { FileText, Video, File } from "lucide-react";
-import { RichTextEditor } from "@/components/admin/rich-text-editor";
-import type { ContentItem } from "@/lib/types";
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+} from "@/components/ui/select";
+
+interface ContentItem {
+  title: string;
+  type: "video" | "document" | "text";
+  content: string;
+  description?: string;
+  duration?: string;
+  order_num: number;
+}
 
 interface ContentItemFormProps {
-  initialData?: ContentItem;
-  onSave: (contentItem: Partial<ContentItem>) => void;
-  onCancel: () => void;
+  contentItem: ContentItem;
+  onChange: (updated: ContentItem) => void;
 }
 
 export function ContentItemForm({
-  initialData,
-  onSave,
-  onCancel,
+  contentItem,
+  onChange,
 }: ContentItemFormProps) {
-  const [title, setTitle] = useState(initialData?.title || "");
-  const [type, setType] = useState<"video" | "document" | "text">(
-    initialData?.type || "text"
-  );
-  const [description, setDescription] = useState(
-    initialData?.description || ""
-  );
-  const [url, setUrl] = useState(
-    initialData?.type !== "text" ? initialData?.content || "" : ""
-  );
-  const [textContent, setTextContent] = useState(
-    initialData?.type === "text" ? initialData?.content || "" : ""
-  );
-
-  const handleSave = () => {
-    if (!title.trim()) {
-      alert("Title is required");
-      return;
-    }
-
-    const content = type === "text" ? textContent : url;
-
-    if (!content) {
-      alert(`${type === "text" ? "Content" : "URL"} is required`);
-      return;
-    }
-
-    onSave({
-      title,
-      type,
-      description,
-      content,
-    });
-  };
-
   return (
-    <div className="space-y-4">
-      <div className="grid gap-2">
-        <Label htmlFor="content-title">Title</Label>
-        <Input
-          id="content-title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter content title"
-        />
-      </div>
+    <div className="border border-gray-300 p-4 rounded mb-4 space-y-4">
+      <Input
+        placeholder="Content Title"
+        value={contentItem.title}
+        onChange={(e) => onChange({ ...contentItem, title: e.target.value })}
+      />
 
-      <div className="grid gap-2">
-        <Label>Content Type</Label>
-        <RadioGroup
-          value={type}
-          onValueChange={(value) =>
-            setType(value as "video" | "document" | "text")
-          }
-          className="flex flex-col space-y-1"
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="video" id="video" />
-            <Label htmlFor="video" className="flex items-center">
-              <Video className="mr-2 h-4 w-4" />
-              Video
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="document" id="document" />
-            <Label htmlFor="document" className="flex items-center">
-              <File className="mr-2 h-4 w-4" />
-              Document
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="text" id="text" />
-            <Label htmlFor="text" className="flex items-center">
-              <FileText className="mr-2 h-4 w-4" />
-              Text
-            </Label>
-          </div>
-        </RadioGroup>
-      </div>
+      <Select
+        value={contentItem.type}
+        onValueChange={(value) =>
+          onChange({ ...contentItem, type: value as ContentItem["type"] })
+        }
+      >
+        <SelectTrigger>
+          <SelectValue placeholder="Select type" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="video">Video</SelectItem>
+          <SelectItem value="document">Document</SelectItem>
+          <SelectItem value="text">Text</SelectItem>
+        </SelectContent>
+      </Select>
 
-      <div className="grid gap-2">
-        <Label htmlFor="content-description">Description (Optional)</Label>
-        <Textarea
-          id="content-description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="Enter content description"
-          rows={2}
-        />
-      </div>
+      <Input
+        placeholder="Content URL or HTML"
+        value={contentItem.content}
+        onChange={(e) => onChange({ ...contentItem, content: e.target.value })}
+      />
 
-      {type === "text" ? (
-        <div className="grid gap-2">
-          <Label htmlFor="content-text">Content</Label>
-          <RichTextEditor
-            initialValue={textContent}
-            onChange={setTextContent}
-            minHeight="200px"
-          />
-        </div>
-      ) : (
-        <div className="grid gap-2">
-          <Label htmlFor="content-url">
-            {type === "video" ? "Video URL" : "Document URL"}
-          </Label>
-          <Input
-            id="content-url"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder={
-              type === "video"
-                ? "Enter video URL (YouTube or direct link)"
-                : "Enter document URL"
-            }
-          />
-        </div>
-      )}
+      <Textarea
+        placeholder="Description"
+        value={contentItem.description || ""}
+        onChange={(e) =>
+          onChange({ ...contentItem, description: e.target.value })
+        }
+      />
 
-      <div className="flex justify-end gap-2 pt-4">
-        <Button variant="outline" onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button
-          onClick={handleSave}
-          className="bg-blue-700 hover:bg-blue-800 text-white"
-        >
-          {initialData ? "Update" : "Add"} Content
-        </Button>
-      </div>
+      <Input
+        placeholder="Duration (e.g. 5 mins)"
+        value={contentItem.duration || ""}
+        onChange={(e) => onChange({ ...contentItem, duration: e.target.value })}
+      />
+
+      <Input
+        placeholder="Order"
+        type="number"
+        value={contentItem.order_num}
+        onChange={(e) =>
+          onChange({ ...contentItem, order_num: Number(e.target.value) })
+        }
+      />
     </div>
   );
 }

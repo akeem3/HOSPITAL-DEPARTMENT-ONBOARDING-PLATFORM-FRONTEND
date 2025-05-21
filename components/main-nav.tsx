@@ -5,34 +5,44 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function MainNav() {
   return (
-    <div className=" flex w-full items-center justify-between">
-      <div className=" flex items-center gap-6 md:gap-10">
+    <div className="relative flex w-full items-center justify-between px-4 md:px-8 h-16">
+      {/* Logo */}
+      <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center space-x-2">
-          {/* <span className="font-bold">Hospital Onboarding</span> */}
-          <div className="flex items-center gap-2 px-4 py-2">
-            <div className="w-8 h-8 rounded-full bg-blue-700 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">MCH</span>
+          <div className="flex items-center gap-2 px-2 py-1">
+            <div className="w-9 h-9 rounded-full bg-blue-700 flex items-center justify-center">
+              <span className="text-white font-bold text-xs">MCH</span>
             </div>
-            <div className="font-semibold text-blue-700">MCH</div>
+            <div className="text-lg font-semibold text-blue-700 tracking-tight">
+              MCH
+            </div>
           </div>
         </Link>
-        <nav className="hidden gap-6 md:flex">
-          <Link
-            href="/"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Home
-          </Link>
-          <Link
-            href="/tutorials"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Departments
-          </Link>
-        </nav>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Centered Desktop Navigation */}
+      <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10">
+        <Link
+          href="/tutorials"
+          className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
+        >
+          Departments
+        </Link>
+        <Link
+          href="/about"
+          className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
+        >
+          Our Hospital
+        </Link>
+        <Link
+          href="/contact"
+          className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
+        >
+          Application
+        </Link>
+      </nav>
+
+      {/* Mobile Nav Trigger */}
       <div className="md:hidden">
         <Sheet>
           <SheetTrigger asChild>
@@ -41,35 +51,33 @@ export function MainNav() {
               <span className="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
-            <nav className="flex flex-col gap-4 pt-10">
-              <Link
-                href="/"
-                className="text-base font-medium transition-colors hover:text-primary"
-              >
-                Home
-              </Link>
+
+          <SheetContent
+            side="right"
+            className="bg-white border-l border-gray-200 shadow-lg w-3/4 sm:w-2/5 p-6"
+          >
+            <nav className="flex flex-col gap-5 pt-6 text-gray-700 text-base font-medium">
               <Link
                 href="/tutorials"
-                className="text-base font-medium transition-colors hover:text-primary"
+                className="hover:text-blue-700 transition-colors"
               >
                 Departments
               </Link>
               <Link
                 href="/about"
-                className="text-base font-medium transition-colors hover:text-primary"
+                className="hover:text-blue-700 transition-colors"
               >
-                About
+                Our Hospital
               </Link>
               <Link
                 href="/contact"
-                className="text-base font-medium transition-colors hover:text-primary"
+                className="hover:text-blue-700 transition-colors"
               >
-                Contact
+                Application
               </Link>
               <Link
                 href="/login"
-                className="text-base font-medium transition-colors hover:text-primary"
+                className="hover:text-blue-700 transition-colors"
               >
                 Admin
               </Link>
@@ -78,9 +86,14 @@ export function MainNav() {
         </Sheet>
       </div>
 
-      <div className="hidden items-center gap-2 md:flex">
+      {/* Desktop Admin Button */}
+      <div className="hidden md:flex items-center">
         <Link href="/login">
-          <Button variant="ghost" size="sm">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-blue-700 hover:text-blue-800"
+          >
             Admin
           </Button>
         </Link>
