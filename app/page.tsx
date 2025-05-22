@@ -8,7 +8,7 @@ import { getTutorials } from "@/lib/data";
 import { PageContainer } from "@/components/page-container";
 import Image from "next/image";
 import type { Tutorial } from "@/lib/types";
-import Contact from "./contact/page";
+// import Contact from "./contact/page";
 
 export default function Home() {
   const [tutorials, setTutorials] = useState<Tutorial[]>([]);

@@ -1,27 +1,20 @@
 // app/admin/layout.tsx
-import Link from "next/link";
+
 import { ReactNode } from "react";
+import { AdminSidebar } from "@/components/admin/admin-sidebar";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex">
-      <aside className="w-64 bg-gray-100 p-4 border-r">
-        <nav className="space-y-2">
-          <Link
-            href="/admin/tutorials"
-            className="block text-blue-700 hover:underline"
-          >
-            Tutorials
-          </Link>
-          <Link
-            href="/admin/users"
-            className="block text-blue-700 hover:underline"
-          >
-            Admin Users
-          </Link>
-        </nav>
-      </aside>
-      <main className="flex-1 p-6">{children}</main>
+      {/* Sidebar stays fixed */}
+      <div className="fixed top-0 left-0 h-screen z-50">
+        <AdminSidebar />
+      </div>
+
+      {/* Main content shifts to the right of the fixed sidebar */}
+      <main className="ml-64 flex-1 p-6 bg-gray-50 min-h-screen overflow-auto">
+        {children}
+      </main>
     </div>
   );
 }

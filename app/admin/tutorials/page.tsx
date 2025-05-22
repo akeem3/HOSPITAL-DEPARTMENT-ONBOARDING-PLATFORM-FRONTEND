@@ -5,12 +5,35 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Tutorial } from "@/lib/types";
 import { PageContainer } from "@/components/page-container";
+import { Trash } from "lucide-react";
 
 export default function AdminTutorialsPage() {
   const [tutorials, setTutorials] = useState<Tutorial[]>([]);
 
+  const handleDelete = async (id: string | number) => {
+    const confirmed = confirm("Are you sure you want to delete this tutorial?");
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(
+        `http://localhost/mch-api/admin/tutorials/?id=${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (res.ok) {
+        setTutorials((prev) => prev.filter((tut) => tut.id !== id));
+      } else {
+        console.error("Failed to delete tutorial");
+      }
+    } catch (error) {
+      console.error("Error deleting tutorial:", error);
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost/mch-api/tutorials/")
+    fetch("http://localhost/mch-api/admin/tutorials/")
       .then((res) => res.json())
       .then((data) => setTutorials(data))
       .catch((err) => console.error("Failed to load tutorials:", err));
@@ -40,9 +63,18 @@ export default function AdminTutorialsPage() {
                     {tutorial.description}
                   </p>
                 </div>
-                <Link href={`/admin/tutorials/${tutorial.id}`}>
-                  <Button variant="outline">Edit</Button>
-                </Link>
+                <div className="flex space-x-2">
+                  <Link href={`/admin/tutorials/${tutorial.id}/edit`}>
+                    <Button variant="outline">Edit</Button>
+                  </Link>
+                  <Button
+                    variant="ghost"
+                    className="text-red-500 hover:text-red-700"
+                    onClick={() => handleDelete(tutorial.id)}
+                  >
+                    <Trash className="h-4 w-4" />
+                  </Button>
+                </div>
               </div>
             </li>
           ))}

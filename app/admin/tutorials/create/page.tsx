@@ -23,9 +23,9 @@ export default function CreateTutorialPage() {
   });
 
   const handleChapterChange = (index: number, updated: Chapter) => {
-    const chapters = [...tutorial.chapters];
-    chapters[index] = updated;
-    setTutorial({ ...tutorial, chapters });
+    const updatedChapters = [...tutorial.chapters];
+    updatedChapters[index] = updated;
+    setTutorial({ ...tutorial, chapters: updatedChapters });
   };
 
   const addChapter = () => {
@@ -34,7 +34,7 @@ export default function CreateTutorialPage() {
       chapters: [
         ...tutorial.chapters,
         {
-          id: Date.now(), // temporary unique ID
+          id: Date.now(),
           title: "",
           description: "",
           order_num: tutorial.chapters.length + 1,
@@ -70,28 +70,29 @@ export default function CreateTutorialPage() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(
-        "http://localhost/mch-api/tutorials/index.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(tutorial),
-        }
-      );
+      const res = await fetch("http://localhost/mch-api/admin/tutorials/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tutorial),
+      });
 
-      if (!response.ok) throw new Error("Failed to create tutorial");
+      if (!res.ok) throw new Error("Failed to create tutorial");
 
       toast.success("Tutorial created successfully");
       router.push("/admin/tutorials");
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error("Error creating tutorial:", error);
       toast.error("Failed to create tutorial");
     }
   };
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Create New Tutorial</h1>
+      <h1 className="text-2xl font-bold mb-4 text-blue-700">
+        Create New Tutorial
+      </h1>
 
       <div className="grid gap-4">
         <Input
@@ -107,7 +108,7 @@ export default function CreateTutorialPage() {
           }
         />
         <Input
-          placeholder="Thumbnail Path (e.g. /images/doctor.jpg)"
+          placeholder="Thumbnail path (e.g., /images/doctor.jpg)"
           value={tutorial.thumbnail}
           onChange={(e) =>
             setTutorial({ ...tutorial, thumbnail: e.target.value })
@@ -121,7 +122,7 @@ export default function CreateTutorialPage() {
           }
         />
         <Input
-          placeholder="Duration (e.g. 30 mins)"
+          placeholder="Duration (e.g., 45 mins)"
           value={tutorial.duration}
           onChange={(e) =>
             setTutorial({ ...tutorial, duration: e.target.value })
@@ -132,18 +133,17 @@ export default function CreateTutorialPage() {
       <div className="mt-8 space-y-6">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Chapters</h2>
-          <Button type="button" onClick={addChapter}>
-            + Add Chapter
-          </Button>
+          <Button onClick={addChapter}>+ Add Chapter</Button>
         </div>
 
         {tutorial.chapters.map((chapter, chapterIndex) => (
-          <div key={chapter.id} className="border p-4 rounded-md space-y-4">
+          <div
+            key={chapter.id}
+            className="border p-4 rounded-md bg-gray-50 space-y-4"
+          >
             <ChapterForm
               chapter={chapter}
-              onChange={(updated: Chapter) =>
-                handleChapterChange(chapterIndex, updated)
-              }
+              onChange={(updated) => handleChapterChange(chapterIndex, updated)}
             />
 
             <div className="space-y-2">
@@ -158,7 +158,6 @@ export default function CreateTutorialPage() {
                 />
               ))}
               <Button
-                type="button"
                 variant="outline"
                 onClick={() => addContentItem(chapterIndex)}
               >
@@ -169,7 +168,7 @@ export default function CreateTutorialPage() {
         ))}
       </div>
 
-      <Button className="mt-6" onClick={handleSubmit}>
+      <Button onClick={handleSubmit} className="mt-6">
         Save Tutorial
       </Button>
     </div>
