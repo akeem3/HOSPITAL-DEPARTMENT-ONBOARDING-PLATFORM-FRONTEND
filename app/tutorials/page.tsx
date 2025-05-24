@@ -88,17 +88,17 @@ export default function TutorialsPage() {
           <div className="flex-1">
             <Input
               placeholder="Search tutorials..."
-              className="max-w-md border-blue-200 focus-visible:ring-blue-500"
+              className="max-w-md border-blue-300 focus-visible:ring-blue-500 text-blue-400"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
           <div className="w-full md:w-[200px] ">
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="border-blue-200 focus:ring-blue-500">
+              <SelectTrigger className="border-blue-400 focus:ring-blue-500 ">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-200 shadow-md rounded-md py-2">
+              <SelectContent className=" bg-white border border-gray-200 shadow-md rounded-md py-2">
                 <SelectItem
                   value="newest"
                   className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"

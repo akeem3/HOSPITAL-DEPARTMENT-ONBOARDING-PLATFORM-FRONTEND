@@ -27,12 +27,12 @@ export function TutorialCard({ tutorial }: TutorialCardProps) {
           src={tutorial.image || "/placeholder.svg?height=200&width=300"}
           alt={tutorial.title}
           fill
-          className="object-cover transition-transform hover:scale-105"
+          className="object-cover transition-transform hover:scale-105 rounded-t-lg"
         />
       </div>
 
       <CardHeader className="pb-2">
-        <CardTitle className="line-clamp-1 text-blue-700">
+        <CardTitle className="line-clamp-1 text-blue-500">
           {tutorial.title}
         </CardTitle>
         <CardDescription className="line-clamp-2 text-gray-600">
@@ -41,7 +41,7 @@ export function TutorialCard({ tutorial }: TutorialCardProps) {
       </CardHeader>
 
       <CardContent className="pb-2">
-        <div className="flex items-center justify-between text-sm text-gray-600">
+        <div className="flex items-center justify-between text-sm text-green-600">
           <span>{tutorial.duration}</span>
         </div>
       </CardContent>
@@ -49,7 +49,7 @@ export function TutorialCard({ tutorial }: TutorialCardProps) {
       <CardFooter>
         <Link
           href={`/tutorials/${tutorial.id}`}
-          className="w-full rounded-full bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-blue-800 swedish-button"
+          className="w-full rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-blue-600 swedish-button"
         >
           Start Learning
         </Link>

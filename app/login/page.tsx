@@ -67,7 +67,7 @@ export default function LoginPage() {
         <Link href="/">
           <Button
             variant="ghost"
-            className="flex items-center gap-2 hover:text-blue-700"
+            className="flex items-center gap-2 hover:text-blue-500"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Website
@@ -79,15 +79,18 @@ export default function LoginPage() {
         <Card className="w-full shadow-lg border-0">
           <CardHeader className="space-y-1">
             <div className="flex justify-center mb-2">
-              <div className="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
                 <span className="text-white font-bold">MCH</span>
               </div>
             </div>
-            <CardTitle className="text-center text-2xl font-bold text-blue-700">
+            <CardTitle className="text-center text-2xl font-bold text-blue-500">
               Admin Login
             </CardTitle>
-            <CardDescription className="text-center text-gray-600">
+            <CardDescription className="text-center text-gray-600 text-sm">
               Enter your credentials to access the admin dashboard
+            </CardDescription>
+            <CardDescription className="text-center text-red-600 ">
+              ADMIN PERSONELS ONLY!
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleLogin}>
@@ -108,7 +111,7 @@ export default function LoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
-                  className="border-gray-300 focus-visible:ring-blue-700"
+                  className="border-gray-300 focus-visible:ring-blue-500"
                 />
               </div>
               <div className="space-y-2">
@@ -121,19 +124,14 @@ export default function LoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="border-gray-300 focus-visible:ring-blue-700"
+                  className="border-gray-300 focus-visible:ring-blue-500"
                 />
               </div>
-              <div className="text-xs text-gray-600 p-2 bg-blue-50 rounded-md">
-                <p>Default credentials:</p>
-                <p>Username: admin</p>
-                <p>Password: password</p>
-              </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="mt-8">
               <Button
                 type="submit"
-                className="w-full bg-blue-700 hover:bg-blue-800 text-white swedish-button"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white swedish-button"
                 disabled={loading}
               >
                 {loading ? "Signing In..." : "Sign In"}

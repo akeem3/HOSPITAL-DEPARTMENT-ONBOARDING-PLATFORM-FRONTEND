@@ -41,10 +41,10 @@ export default function AdminUsersPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-blue-700">Admin Users</h1>
+        <h1 className="text-2xl font-bold text-blue-500">Admin Users</h1>
         <button
           onClick={() => router.push("/admin/users/create")}
-          className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           + Add Admin User
         </button>
@@ -66,7 +66,7 @@ export default function AdminUsersPage() {
               <td className="p-2 border space-x-2">
                 <a
                   href={`/admin/users/${user.id}/edit`}
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-500 hover:underline"
                 >
                   Edit
                 </a>

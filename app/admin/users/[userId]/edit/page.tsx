@@ -42,7 +42,7 @@ export default function EditAdminUserPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-blue-700">Edit Admin User</h1>
+      <h1 className="text-2xl font-bold mb-4 text-blue-500">Edit Admin User</h1>
       <form onSubmit={handleSubmit} className="grid gap-4 max-w-md">
         <input
           title="username: "
@@ -65,7 +65,7 @@ export default function EditAdminUserPage() {
           placeholder="New password (leave blank to keep current)"
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
-        <button className="bg-blue-700 text-white px-4 py-2 rounded">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded">
           Update User
         </button>
       </form>

@@ -42,9 +42,9 @@ export default function AdminTutorialsPage() {
   return (
     <PageContainer>
       <div className="mb-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-700">Manage Tutorials</h1>
+        <h1 className="text-2xl font-bold text-blue-500">Manage Tutorials</h1>
         <Link href="/admin/tutorials/create">
-          <Button className="bg-blue-700 text-white hover:bg-blue-800">
+          <Button className="bg-blue-500 text-white hover:bg-blue-600">
             + New Tutorial
           </Button>
         </Link>

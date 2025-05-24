@@ -10,10 +10,10 @@ export function MainNav() {
       <div className="flex items-center gap-2">
         <Link href="/" className="flex items-center space-x-2">
           <div className="flex items-center gap-2 px-2 py-1">
-            <div className="w-9 h-9 rounded-full bg-blue-700 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center">
               <span className="text-white font-bold text-xs">MCH</span>
             </div>
-            <div className="text-lg font-semibold text-blue-700 tracking-tight">
+            <div className="text-lg font-semibold text-blue-500 tracking-tight">
               MCH
             </div>
           </div>
@@ -23,12 +23,19 @@ export function MainNav() {
       {/* Centered Desktop Navigation */}
       <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10">
         <Link
-          href="/tutorials"
-          className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
+          href="/"
+          className="text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors hover:underline underline-offset-4"
         >
-          Departments
+          HOME
         </Link>
+
         <Link
+          href="/tutorials"
+          className="text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors hover:underline underline-offset-4"
+        >
+          DEPARTMENTS
+        </Link>
+        {/* <Link
           href="/about"
           className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
         >
@@ -39,7 +46,7 @@ export function MainNav() {
           className="text-sm font-medium text-gray-700 hover:text-blue-700 transition-colors hover:underline underline-offset-4"
         >
           Application
-        </Link>
+        </Link> */}
       </nav>
 
       {/* Mobile Nav Trigger */}
@@ -57,13 +64,18 @@ export function MainNav() {
             className="bg-white border-l border-gray-200 shadow-lg w-3/4 sm:w-2/5 p-6"
           >
             <nav className="flex flex-col gap-5 pt-6 text-gray-700 text-base font-medium">
+              <Link href="/" className="hover:text-blue-500 transition-colors">
+                HOME
+              </Link>
+
               <Link
                 href="/tutorials"
-                className="hover:text-blue-700 transition-colors"
+                className="hover:text-blue-500 transition-colors"
               >
-                Departments
+                DEPARTMENTS
               </Link>
-              <Link
+
+              {/* <Link
                 href="/about"
                 className="hover:text-blue-700 transition-colors"
               >
@@ -74,7 +86,7 @@ export function MainNav() {
                 className="hover:text-blue-700 transition-colors"
               >
                 Application
-              </Link>
+              </Link> */}
               <Link
                 href="/login"
                 className="hover:text-blue-700 transition-colors"
@@ -90,9 +102,9 @@ export function MainNav() {
       <div className="hidden md:flex items-center">
         <Link href="/login">
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
-            className="text-blue-700 hover:text-blue-800"
+            className="border-blue-500 text-blue-500 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600 rounded-md px-4 py-2"
           >
             Admin
           </Button>

@@ -8,67 +8,96 @@ import { getTutorials } from "@/lib/data";
 import { PageContainer } from "@/components/page-container";
 import Image from "next/image";
 import type { Tutorial } from "@/lib/types";
-// import Contact from "./contact/page";
+
+interface BlogImage {
+  id: number | string;
+  image_url: string;
+}
 
 export default function Home() {
   const [tutorials, setTutorials] = useState<Tutorial[]>([]);
+  const [blogImages, setBlogImages] = useState<BlogImage[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getTutorials();
-        setTutorials(data.slice(0, 3)); // Show first 3 as featured
+        const tutorialsData = await getTutorials();
+        setTutorials(tutorialsData.slice(0, 3));
+
+        const res = await fetch("http://localhost/mch-api/admin/blog/");
+        const blogData = await res.json();
+        setBlogImages(blogData || []);
       } catch (error) {
-        console.error("Failed to load tutorials", error);
+        console.error("Failed to load homepage data", error);
       }
     }
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % blogImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [blogImages.length]);
+
+  const goToSlide = (index: number) => setCurrentIndex(index);
+
   return (
     <PageContainer>
-      <section className="w-full -mx-4 -mt-8 bg-gradient-to-r from-blue-700 to-blue-800 py-12 md:py-24">
-        <div className="container-custom px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl">
-                Welcome to Hospital Staff Onboarding
-              </h1>
-              <p className="max-w-[600px] text-blue-100 md:text-xl">
-                Complete interactive tutorials to get familiar with hospital
-                procedures and protocols.
+      {/* Blog Slider */}
+      <section className="relative w-full h-[450px] overflow-hidden rounded-lg shadow-lg mb-12">
+        {blogImages.length > 0 && (
+          <div className="relative w-full h-full">
+            <Image
+              src={blogImages[currentIndex].image_url}
+              alt={`Blog ${currentIndex + 1}`}
+              fill
+              className="object-cover transition-opacity duration-700 ease-in-out"
+              priority
+            />
+
+            {/* Overlay fade */}
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-transparent to-transparent" />
+
+            {/* Captions */}
+            <div className="absolute bottom-6 left-6 text-white">
+              <h2 className="text-3xl font-bold text-white drop-shadow">
+                WELCOME TO MCH
+              </h2>
+              <p className="text-green-300 text-lg font-medium">
+                Latest News & Blog
               </p>
-              <div className="flex flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0 pt-4">
-                <Link href="/tutorials">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-auto bg-white text-blue-700 hover:bg-blue-50 swedish-button"
-                  >
-                    Browse Departments
-                  </Button>
-                </Link>
-              </div>
             </div>
 
-            <div className="hidden md:block">
-              <div className="relative w-full aspect-video max-w-lg mx-auto rounded-2xl shadow-2xl overflow-hidden">
-                <Image
-                  src="/images/mch-hospital.jpg"
-                  alt="Healthcare professionals"
-                  fill
-                  className="object-cover transition-transform duration-500 ease-in-out hover:scale-105"
+            {/* Dots */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+              {blogImages.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    index === currentIndex
+                      ? "bg-blue-500"
+                      : "bg-blue-100 opacity-50"
+                  }`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
-              </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
       </section>
 
+      {/* Tutorials Section */}
       <section className="py-12">
-        <h2 className="mb-6 text-2xl font-bold tracking-tight text-blue-700">
+        <h2 className="mb-6 text-3xl font-bold tracking-tight text-blue-500 inline-block pb-2">
           DEPARTMENTS
         </h2>
+
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {tutorials.map((tutorial) => (
             <TutorialCard
@@ -83,10 +112,11 @@ export default function Home() {
             />
           ))}
         </div>
+
         <Link href="/tutorials" className="mx-auto mt-8 block w-fit">
           <Button
-            variant="outline"
-            className="swedish-button hover:text-blue-700 hover:border-blue-300 mt-6"
+            variant="ghost"
+            className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-700 transition"
           >
             View All Departments
           </Button>

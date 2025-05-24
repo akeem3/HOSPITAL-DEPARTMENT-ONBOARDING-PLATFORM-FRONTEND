@@ -32,10 +32,13 @@ export default function TutorialDetailPage() {
         const data = await getTutorialById(tutorialId as string);
         setTutorial(data);
 
+        const firstChapterId = data.chapters[0]?.id;
+        const firstContentItemId = data.chapters[0]?.contentItems[0]?.id;
+
         const chapterParam =
-          searchParams.get("chapter") || data.chapters[0]?.id;
+          searchParams.get("chapter") ?? firstChapterId?.toString() ?? "";
         const contentParam =
-          searchParams.get("content") || data.chapters[0]?.contentItems[0]?.id;
+          searchParams.get("content") ?? firstContentItemId?.toString() ?? "";
 
         setActiveChapterId(chapterParam);
         setActiveContentItemId(contentParam);
