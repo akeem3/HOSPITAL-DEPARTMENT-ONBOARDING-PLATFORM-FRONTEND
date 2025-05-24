@@ -66,10 +66,10 @@ export default function Home() {
             {/* Captions */}
             <div className="absolute bottom-6 left-6 text-white">
               <h2 className="text-3xl font-bold text-white drop-shadow">
-                WELCOME TO MCH
+                WELCOME TO MCH | مرحباً
               </h2>
               <p className="text-green-300 text-lg font-medium">
-                Latest News & Blog
+                Latest News & Blog | آخر الأخبار والمدونة
               </p>
             </div>
 
@@ -95,7 +95,7 @@ export default function Home() {
       {/* Tutorials Section */}
       <section className="py-12">
         <h2 className="mb-6 text-3xl font-bold tracking-tight text-blue-500 inline-block pb-2">
-          DEPARTMENTS
+          DEPARTMENTS - الأقسام
         </h2>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -118,7 +118,7 @@ export default function Home() {
             variant="ghost"
             className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white hover:border-blue-700 transition"
           >
-            View All Departments
+            View All - عرض الكل
           </Button>
         </Link>
       </section>

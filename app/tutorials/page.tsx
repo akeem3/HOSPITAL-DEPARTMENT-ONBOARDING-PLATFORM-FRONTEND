@@ -82,7 +82,7 @@ export default function TutorialsPage() {
     <PageContainer>
       <div className="mb-8">
         <h1 className="mb-4 text-3xl font-bold text-blue-600 dark:text-blue-400">
-          ALL DEPARTMENTS
+          ALL DEPARTMENTS - جميع الأقسام
         </h1>
         <div className="flex flex-col gap-4 md:flex-row md:items-center">
           <div className="flex-1">
@@ -103,25 +103,25 @@ export default function TutorialsPage() {
                   value="newest"
                   className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
                 >
-                  Newest First
+                  Newest - الأحدث
                 </SelectItem>
                 <SelectItem
                   value="oldest"
                   className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
                 >
-                  Oldest First
+                  Oldest - الأقدم
                 </SelectItem>
                 <SelectItem
                   value="duration-asc"
                   className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
                 >
-                  Duration (Shortest)
+                  Shortest - الأقصر
                 </SelectItem>
                 <SelectItem
                   value="duration-desc"
                   className="px-4 py-2 text-sm hover:bg-blue-50 focus:bg-blue-100 focus:text-blue-700 transition-colors cursor-pointer"
                 >
-                  Duration (Longest)
+                  Longest - الأطول
                 </SelectItem>
               </SelectContent>
             </Select>

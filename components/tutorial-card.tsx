@@ -51,7 +51,7 @@ export function TutorialCard({ tutorial }: TutorialCardProps) {
           href={`/tutorials/${tutorial.id}`}
           className="w-full rounded-lg bg-blue-500 px-4 py-2 text-center text-sm font-medium text-white transition-colors hover:bg-blue-600 swedish-button"
         >
-          Start Learning
+          View - منظر
         </Link>
       </CardFooter>
     </Card>

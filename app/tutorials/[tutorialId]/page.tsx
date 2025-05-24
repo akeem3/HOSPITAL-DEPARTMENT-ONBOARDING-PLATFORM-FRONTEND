@@ -99,7 +99,7 @@ export default function TutorialDetailPage() {
         <Link href="/tutorials">
           <Button>
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tutorials
+            Back to Tutorials - خلف
           </Button>
         </Link>
       </PageContainer>
@@ -111,7 +111,7 @@ export default function TutorialDetailPage() {
       <Link href="/tutorials">
         <Button variant="outline" className="mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Tutorials
+          Back to Tutorials - خلف
         </Button>
       </Link>
 

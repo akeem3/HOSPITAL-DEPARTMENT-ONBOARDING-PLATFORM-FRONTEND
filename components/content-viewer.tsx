@@ -62,6 +62,8 @@ export function ContentViewer({
             )}
           </div>
         );
+
+      case "document":
       case "document":
         return (
           <div className="space-y-4">
@@ -78,14 +80,21 @@ export function ContentViewer({
             )}
           </div>
         );
+
       case "text":
         return (
           <div className="prose max-w-none dark:prose-invert">
             <div dangerouslySetInnerHTML={{ __html: contentItem.content }} />
           </div>
         );
+
       default:
-        return <p>Unsupported content type</p>;
+        return (
+          <p className="text-red-600">
+            Unsupported content type | نوع المحتوى غير المدعوم:{" "}
+            {contentItem.type}
+          </p>
+        );
     }
   };
 
@@ -105,14 +114,14 @@ export function ContentViewer({
             className="border-gray-300 text-gray-900 hover:bg-blue-50 hover:text-blue-700 disabled:opacity-50"
           >
             <ChevronLeft className="mr-2 h-4 w-4" />
-            Previous
+            Previous - سابق
           </Button>
           <Button
             onClick={onNext}
             disabled={!hasNext}
             className="bg-blue-700 hover:bg-blue-800 text-white disabled:opacity-50"
           >
-            Next
+            Next - التالي
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>

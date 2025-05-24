@@ -26,14 +26,14 @@ export function MainNav() {
           href="/"
           className="text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors hover:underline underline-offset-4"
         >
-          HOME
+          HOME | بيت
         </Link>
 
         <Link
           href="/tutorials"
           className="text-sm font-medium text-gray-700 hover:text-blue-500 transition-colors hover:underline underline-offset-4"
         >
-          DEPARTMENTS
+          DEPARTMENTS | الإدارات
         </Link>
         {/* <Link
           href="/about"
@@ -65,14 +65,14 @@ export function MainNav() {
           >
             <nav className="flex flex-col gap-5 pt-6 text-gray-700 text-base font-medium">
               <Link href="/" className="hover:text-blue-500 transition-colors">
-                HOME
+                HOME | بيت
               </Link>
 
               <Link
                 href="/tutorials"
                 className="hover:text-blue-500 transition-colors"
               >
-                DEPARTMENTS
+                DEPARTMENTS | الإدارات
               </Link>
 
               {/* <Link
@@ -91,7 +91,7 @@ export function MainNav() {
                 href="/login"
                 className="hover:text-blue-700 transition-colors"
               >
-                Admin
+                Admin | مسؤل
               </Link>
             </nav>
           </SheetContent>
@@ -106,7 +106,7 @@ export function MainNav() {
             size="sm"
             className="border-blue-500 text-blue-500 hover:bg-blue-50 hover:border-blue-600 hover:text-blue-600 rounded-md px-4 py-2"
           >
-            Admin
+            Admin | مسؤل
           </Button>
         </Link>
       </div>

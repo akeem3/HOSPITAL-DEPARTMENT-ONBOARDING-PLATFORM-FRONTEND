@@ -95,13 +95,19 @@ export default function EditTutorialPage() {
 
   const handleSave = async () => {
     if (!tutorial) return;
+
+    const updatedTutorial = {
+      ...tutorial,
+      chapters, // Include updated chapters with contentItems
+    };
+
     try {
       const res = await fetch(
         "http://localhost/mch-api/admin/tutorials/update.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(tutorial),
+          body: JSON.stringify(updatedTutorial), // Send the full tutorial data
         }
       );
 
@@ -118,7 +124,7 @@ export default function EditTutorialPage() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-blue-700">
+      <h1 className="text-2xl font-bold mb-4 text-blue-500">
         Edit Tutorial: {tutorial.title}
       </h1>
 
@@ -211,7 +217,7 @@ export default function EditTutorialPage() {
 
       <Button
         onClick={handleSave}
-        className="mt-6 bg-blue-700 text-white hover:bg-blue-800"
+        className="mt-6 bg-blue-500 text-white hover:bg-blue-600"
       >
         Save Changes
       </Button>
