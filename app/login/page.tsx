@@ -46,7 +46,7 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Login failed");
+        setError(data.error || "Login failed / تسجيل الدخول فشل");
         return;
       }
 
@@ -55,7 +55,7 @@ export default function LoginPage() {
       router.push("/admin/tutorials");
     } catch (err) {
       console.error("Login error:", err);
-      setError("An unexpected error occurred");
+      setError("An unexpected error occurred / حدث خطأ غير متوقع");
     } finally {
       setLoading(false);
     }
@@ -70,7 +70,7 @@ export default function LoginPage() {
             className="flex items-center gap-2 hover:text-blue-500"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Website
+            Back to Website / العودة للموقع
           </Button>
         </Link>
       </div>
@@ -84,13 +84,18 @@ export default function LoginPage() {
               </div>
             </div>
             <CardTitle className="text-center text-2xl font-bold text-blue-500">
-              Admin Login
+              Admin Login / تسجيل دخول المسؤول
             </CardTitle>
-            <CardDescription className="text-center text-gray-600 text-sm">
+            <CardDescription
+              className="text-center text-gray-600 text-sm"
+              dir="rtl"
+            >
               Enter your credentials to access the admin dashboard
+              <br />
+              أدخل بياناتك للوصول إلى لوحة التحكم
             </CardDescription>
-            <CardDescription className="text-center text-red-600 ">
-              ADMIN PERSONELS ONLY!
+            <CardDescription className="text-center text-red-600">
+              ADMIN PERSONNEL ONLY! / للمسؤولين فقط!
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleLogin}>
@@ -103,7 +108,7 @@ export default function LoginPage() {
               )}
               <div className="space-y-2">
                 <Label htmlFor="username" className="text-gray-700">
-                  Username
+                  Username / اسم المستخدم
                 </Label>
                 <Input
                   id="username"
@@ -116,7 +121,7 @@ export default function LoginPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password" className="text-gray-700">
-                  Password
+                  Password / كلمة المرور
                 </Label>
                 <Input
                   id="password"
@@ -134,7 +139,9 @@ export default function LoginPage() {
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white swedish-button"
                 disabled={loading}
               >
-                {loading ? "Signing In..." : "Sign In"}
+                {loading
+                  ? "Signing In... / جاري تسجيل الدخول..."
+                  : "Sign In / تسجيل الدخول"}
               </Button>
             </CardFooter>
           </form>

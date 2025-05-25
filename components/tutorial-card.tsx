@@ -32,7 +32,7 @@ export function TutorialCard({ tutorial }: TutorialCardProps) {
       </div>
 
       <CardHeader className="pb-2">
-        <CardTitle className="line-clamp-1 text-blue-500">
+        <CardTitle className="line-clamp-1 text-blue-500 pb-0.5">
           {tutorial.title}
         </CardTitle>
         <CardDescription className="line-clamp-2 text-gray-600">

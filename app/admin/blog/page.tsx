@@ -84,6 +84,9 @@ export default function AdminBlogPage() {
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-blue-500">
         Manage Blog Slider
+        <span className="block text-sm text-gray-300 mt-1">
+          إدارة صور شريط المدونة
+        </span>
       </h1>
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-4 mb-6">
@@ -98,11 +101,17 @@ export default function AdminBlogPage() {
           className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-md"
         >
           Upload Image
+          <span className="block text-xs opacity-80">تحميل صورة</span>
         </Button>
       </div>
 
       {images.length === 0 ? (
-        <p className="text-muted-foreground">No images added yet.</p>
+        <p className="text-muted-foreground">
+          No images added yet.
+          <span className="block text-xs opacity-80">
+            لا توجد صور مضافة حتى الآن
+          </span>
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {images.map((img) => (
@@ -120,6 +129,7 @@ export default function AdminBlogPage() {
                 onClick={() => handleDelete(img.id)}
               >
                 Delete
+                <span className="block text-xs opacity-80">حذف</span>
               </Button>
             </div>
           ))}

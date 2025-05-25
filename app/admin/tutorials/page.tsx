@@ -11,7 +11,9 @@ export default function AdminTutorialsPage() {
   const [tutorials, setTutorials] = useState<Tutorial[]>([]);
 
   const handleDelete = async (id: string | number) => {
-    const confirmed = confirm("Are you sure you want to delete this tutorial?");
+    const confirmed = confirm(
+      "Are you sure you want to delete this tutorial? / هل أنت متأكد أنك تريد حذف هذا الدليل؟"
+    );
     if (!confirmed) return;
 
     try {
@@ -25,10 +27,13 @@ export default function AdminTutorialsPage() {
       if (res.ok) {
         setTutorials((prev) => prev.filter((tut) => tut.id !== id));
       } else {
-        console.error("Failed to delete tutorial");
+        console.error("Failed to delete tutorial / فشل حذف الدليل");
       }
     } catch (error) {
-      console.error("Error deleting tutorial:", error);
+      console.error(
+        "Error deleting tutorial / حدث خطأ أثناء حذف الدليل:",
+        error
+      );
     }
   };
 
@@ -36,22 +41,28 @@ export default function AdminTutorialsPage() {
     fetch("http://localhost/mch-api/admin/tutorials/")
       .then((res) => res.json())
       .then((data) => setTutorials(data))
-      .catch((err) => console.error("Failed to load tutorials:", err));
+      .catch((err) =>
+        console.error("Failed to load tutorials / فشل تحميل الأدلة:", err)
+      );
   }, []);
 
   return (
     <PageContainer>
       <div className="mb-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-500">Manage Tutorials</h1>
+        <h1 className="text-2xl font-bold text-blue-500">
+          Manage Tutorials / إدارة الأدلة
+        </h1>
         <Link href="/admin/tutorials/create">
           <Button className="bg-blue-500 text-white hover:bg-blue-600">
-            + New Tutorial
+            + New Tutorial / إضافة دليل جديد
           </Button>
         </Link>
       </div>
 
       {tutorials.length === 0 ? (
-        <p className="text-muted-foreground">No tutorials available.</p>
+        <p className="text-muted-foreground">
+          No tutorials available / لا توجد أدلة متاحة.
+        </p>
       ) : (
         <ul className="space-y-4">
           {tutorials.map((tutorial) => (
@@ -65,7 +76,7 @@ export default function AdminTutorialsPage() {
                 </div>
                 <div className="flex space-x-2">
                   <Link href={`/admin/tutorials/${tutorial.id}/edit`}>
-                    <Button variant="outline">Edit</Button>
+                    <Button variant="outline">Edit / تعديل</Button>
                   </Link>
                   <Button
                     variant="ghost"

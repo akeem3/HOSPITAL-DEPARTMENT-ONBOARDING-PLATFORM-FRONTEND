@@ -124,7 +124,9 @@ export default function EditTutorialPage() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto space-y-6">
-      <h1 className="text-2xl font-bold text-blue-700">Edit Tutorial</h1>
+      <h1 className="text-2xl font-bold text-blue-700">
+        Edit Tutorial - يحرر{" "}
+      </h1>
 
       <Input
         placeholder="Title"
@@ -155,7 +157,7 @@ export default function EditTutorialPage() {
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold">Chapters</h2>
           <Button type="button" onClick={addChapter}>
-            + Add Chapter
+            + Add Chapter | إضافة الفصل
           </Button>
         </div>
 
@@ -168,7 +170,7 @@ export default function EditTutorialPage() {
                 size="sm"
                 onClick={() => deleteChapter(chapterIndex)}
               >
-                Delete Chapter
+                Delete Chapter | حذف الفصل
               </Button>
             </div>
 
@@ -196,7 +198,7 @@ export default function EditTutorialPage() {
                     className="text-red-500 absolute top-2 right-2"
                     onClick={() => deleteContentItem(chapterIndex, itemIndex)}
                   >
-                    Remove
+                    Remove | يزيل
                   </Button>
                 </div>
               ))}
@@ -213,7 +215,7 @@ export default function EditTutorialPage() {
       </div>
 
       <Button onClick={handleSave} className="mt-6">
-        Save Changes
+        Save Changes | تحديث
       </Button>
     </div>
   );
