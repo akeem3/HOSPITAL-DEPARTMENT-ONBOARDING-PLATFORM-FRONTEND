@@ -27,20 +27,22 @@ export function ChapterAccordion({
   completedItems = [],
   onSelectContentItem,
 }: ChapterAccordionProps) {
-  // Default to first chapter being open if none is active
+  // Normalize chapter IDs to strings for Accordion compatibility
+  const normalizeId = (id: string | number | undefined) =>
+    id !== undefined ? String(id) : "";
+
   const [openChapters, setOpenChapters] = useState<string[]>(
     activeChapterId
-      ? [activeChapterId]
+      ? [normalizeId(activeChapterId)]
       : chapters.length > 0
-      ? [chapters[0].id]
+      ? [normalizeId(chapters[0].id)]
       : []
   );
 
-  const handleChapterToggle = (chapterId: string) => {
+  const handleChapterToggle = (chapterId: string | number | undefined) => {
+    const id = normalizeId(chapterId);
     setOpenChapters((prev) =>
-      prev.includes(chapterId)
-        ? prev.filter((id) => id !== chapterId)
-        : [...prev, chapterId]
+      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
 
@@ -52,6 +54,8 @@ export function ChapterAccordion({
         return <File className="h-4 w-4" />;
       case "text":
         return <FileText className="h-4 w-4" />;
+      case "file":
+        return <File className="h-4 w-4" />;
       default:
         return <FileText className="h-4 w-4" />;
     }
@@ -61,59 +65,65 @@ export function ChapterAccordion({
     <Accordion
       type="multiple"
       value={openChapters}
-      onValueChange={setOpenChapters}
+      onValueChange={(values) => setOpenChapters(values as string[])}
       className="w-full"
     >
-      {chapters.map((chapter) => (
-        <AccordionItem
-          key={chapter.id}
-          value={chapter.id}
-          className="border-b border-gray-200"
-        >
-          <AccordionTrigger
-            onClick={() => handleChapterToggle(chapter.id)}
-            className="py-4 text-left font-medium text-gray-900 hover:text-blue-700"
+      {chapters.map((chapter) => {
+        const chapterId = normalizeId(chapter.id);
+        return (
+          <AccordionItem
+            key={chapterId}
+            value={chapterId}
+            className="border-b border-gray-200"
           >
-            {chapter.title}
-          </AccordionTrigger>
-          <AccordionContent>
-            {chapter.description && (
-              <p className="mb-3 text-sm text-gray-600">
-                {chapter.description}
-              </p>
-            )}
-            <div className="space-y-1 py-1">
-              {chapter.contentItems
-                .sort((a, b) => a.order - b.order)
-                .map((item) => (
-                  <Button
-                    key={item.id}
-                    variant="ghost"
-                    className={cn(
-                      "w-full justify-start text-left font-normal",
-                      activeContentItemId === item.id
-                        ? "bg-blue-50 text-blue-700"
-                        : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"
-                    )}
-                    onClick={() => onSelectContentItem(chapter.id, item.id)}
-                  >
-                    <div className="mr-2 text-gray-500">
-                      {getContentIcon(item.type)}
-                    </div>
-                    <span className="flex-1 truncate">{item.title}</span>
-                    <div className="ml-2">
-                      {completedItems.includes(item.id) ? (
-                        <CheckCircle className="h-4 w-4 text-green-500" />
-                      ) : (
-                        <Circle className="h-4 w-4 text-gray-300" />
-                      )}
-                    </div>
-                  </Button>
-                ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
+            <AccordionTrigger
+              onClick={() => handleChapterToggle(chapter.id)}
+              className="py-4 text-left font-medium text-gray-900 hover:text-blue-700"
+            >
+              {chapter.title}
+            </AccordionTrigger>
+            <AccordionContent>
+              {chapter.description && (
+                <p className="mb-3 text-sm text-gray-600">
+                  {chapter.description}
+                </p>
+              )}
+              <div className="space-y-1 py-1">
+                {chapter.contentItems
+                  .sort((a, b) => a.order_num - b.order_num)
+                  .map((item) => {
+                    const itemId = normalizeId(item.id);
+                    return (
+                      <Button
+                        key={itemId}
+                        variant="ghost"
+                        className={cn(
+                          "w-full justify-start text-left font-normal",
+                          activeContentItemId === itemId
+                            ? "bg-blue-50 text-blue-700"
+                            : "text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                        )}
+                        onClick={() => onSelectContentItem(chapterId, itemId)}
+                      >
+                        <div className="mr-2 text-gray-500">
+                          {getContentIcon(item.type)}
+                        </div>
+                        <span className="flex-1 truncate">{item.title}</span>
+                        <div className="ml-2">
+                          {completedItems.includes(itemId) ? (
+                            <CheckCircle className="h-4 w-4 text-green-500" />
+                          ) : (
+                            <Circle className="h-4 w-4 text-gray-300" />
+                          )}
+                        </div>
+                      </Button>
+                    );
+                  })}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        );
+      })}
     </Accordion>
   );
 }

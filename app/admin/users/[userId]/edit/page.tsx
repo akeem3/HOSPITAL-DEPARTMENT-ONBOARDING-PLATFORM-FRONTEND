@@ -45,14 +45,16 @@ export default function EditAdminUserPage() {
       <h1 className="text-2xl font-bold mb-4 text-blue-500">Edit Admin User</h1>
       <form onSubmit={handleSubmit} className="grid gap-4 max-w-md">
         <input
-          title="username: "
+          suppressHydrationWarning
+          title="username"
           className="border p-2"
           value={user.username}
           onChange={(e) => setUser({ ...user, username: e.target.value })}
           required
         />
         <input
-          title="email: "
+          suppressHydrationWarning
+          title="email"
           className="border p-2"
           type="email"
           value={user.email}
@@ -60,6 +62,7 @@ export default function EditAdminUserPage() {
           required
         />
         <input
+          suppressHydrationWarning
           className="border p-2"
           type="password"
           placeholder="New password (leave blank to keep current)"

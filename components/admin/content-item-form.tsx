@@ -14,7 +14,7 @@ import {
 
 interface ContentItem {
   title: string;
-  type: "video" | "document" | "text";
+  type: "video" | "document" | "text" | "file";
   content: string;
   description?: string;
   duration?: string;
@@ -47,7 +47,7 @@ export function ContentItemForm({
         <SelectTrigger>
           <SelectValue placeholder="Select type" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white">
           <SelectItem value="video">Video</SelectItem>
           <SelectItem value="document">Document</SelectItem>
           <SelectItem value="text">Text</SelectItem>

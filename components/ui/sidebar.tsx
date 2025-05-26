@@ -19,6 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface SidebarContextValue {
   expanded: boolean;
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleSidebar: () => void;
 }
 
 const SidebarContext = React.createContext<SidebarContextValue | undefined>(
@@ -34,8 +35,11 @@ export function SidebarProvider({
 }) {
   const [expanded, setExpanded] = React.useState(defaultExpanded);
 
+  // Add the toggleSidebar function
+  const toggleSidebar = () => setExpanded((prev) => !prev);
+
   return (
-    <SidebarContext.Provider value={{ expanded, setExpanded }}>
+    <SidebarContext.Provider value={{ expanded, setExpanded, toggleSidebar }}>
       {children}
     </SidebarContext.Provider>
   );
