@@ -45,12 +45,12 @@ Built specifically for the **Maternity and Children Hospital, Buraidah**, this p
 ---
 
 ### 🧭 Department Page – Select Department Resources
-![Department Page](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Department%20Page.png?alt=media&token=82c78182-f8f9-4c5c-8e3b-d025e2b99b54)
+![Department Page]([https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Department%20Page.png?alt=media&token=82c78182-f8f9-4c5c-8e3b-d025e2b99b54](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Mch%20Projects%2FDepartment%20page.png?alt=media&token=25650103-1ad1-43df-9d2a-ec25c05c6736))
 
 ---
 
 ### 🎬 Department Video – Onboarding in Action (Updated UI)
-![Department Video Page – Improved](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Mch%20Projects%2FDepartment%20page.png?alt=media&token=25650103-1ad1-43df-9d2a-ec25c05c6736)
+![Department Video Page – Improved]()
 
 ---
 
