@@ -50,12 +50,12 @@ Built specifically for the **Maternity and Children Hospital, Buraidah**, this p
 ---
 
 ### 🎬 Department Video – Onboarding in Action (Updated UI)
-![Department Video Page – Improved]()
+![Department Video Page – Improved](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Mch%20Projects%2Fcontent%20page.png?alt=media&token=c14fac77-0193-49e2-ab5d-03a423d49c91)
 
 ---
 
 ### 🛠️ Admin Page – Media & Content Upload Interface (In Progress)
-![Admin Glimpse](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/admin%20glimps.png?alt=media&token=2999abfe-37b1-470d-b40b-c109c4936a32)
+![Admin Glimpse](https://firebasestorage.googleapis.com/v0/b/tadorado-tailors.firebasestorage.app/o/Mch%20Projects%2FAdmin%20panel.png?alt=media&token=143db66a-321e-417d-ae5f-042e52d7d9e6)
 
 ---
 
