@@ -19,7 +19,6 @@ export function MainNav() {
           </div>
         </Link>
       </div>
-
       {/* Centered Desktop Navigation */}
       <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10">
         <Link
@@ -48,7 +47,6 @@ export function MainNav() {
           Application
         </Link> */}
       </nav>
-
       {/* Mobile Nav Trigger */}
       <div className="md:hidden">
         <Sheet>
@@ -97,7 +95,6 @@ export function MainNav() {
           </SheetContent>
         </Sheet>
       </div>
-
       {/* Desktop Admin Button */}
       <div className="hidden md:flex items-center">
         <Link href="/login">

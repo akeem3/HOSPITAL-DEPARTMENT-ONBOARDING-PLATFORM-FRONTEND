@@ -28,7 +28,7 @@ export function FeedbackForm({ tutorialId }: FeedbackFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, you would submit the feedback to your backend
+
     console.log({ tutorialId, rating, feedback });
     setSubmitted(true);
 
